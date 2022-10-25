@@ -9,6 +9,8 @@ discord: jsemnamol#8198
 
 
 
+
+import string
 import re
 users = {'Bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'pass123',}
 
@@ -34,24 +36,36 @@ volba = input()
 
 def pocetslov():
     res = len(re.findall(r'\w+', textList[int(volba)-1]))    
-    print(str(res))
+    print("pocet slov v textu je: ",str(res))
 
 pocetslov()
 
 def zacinajiVelkym():
     list1 = []
-    for word in textList[int(volba)-1]:
-        if word[0].isupper():
+    for word in textList[int(volba)-1].split():
+        
+        if word[0].isupper() and word[0].isalpha():
             list1.append(word)
-    print(len(list1))
+            
+    print("pocet slov začínající velkým písmenem je:",len(list1))
 
 zacinajiVelkym()
 
 
 def jsouVelkym():
     list1 = []
-    pocet = sum(map(str.isupper, textList[int(volba)-1].split()))
-    print(pocet)
+    for word in textList[int(volba)-1].split():
+        
+        if word.isupper() and word[0].isalpha():
+            list1.append(word)
+            
+    print("pocet slov velkym písmen je: ",len(list1))
+    
+    
+    
+    #list1 = []
+    #pocet = sum(map(str.isupper, textList[int(volba)-1].split()))
+    #print(pocet)
     
 
 jsouVelkym()
@@ -59,10 +73,54 @@ jsouVelkym()
 def jsoumalym():
     list1 = []
     pocet = sum(map(str.islower, textList[int(volba)-1].split()))
-    print(pocet)
+    print("pocet slov malým písmem je:",pocet)
     
 
 jsoumalym()
+
+def cislice():
+    list1 = []
+    for word in textList[int(volba)-1]:
+        for pismeno in word:
+            if pismeno.isnumeric():
+                list1.append(pismeno)
+        
+    print("počet číslic v textu je: ",len(list1))
+
+cislice()
+
+def suma():
+    vysledek = 0
+    for word in textList[int(volba)-1].split():
+        if word.isdigit():
+            vysledek += int(word)
+        
+    print("Suma všech čísel je: ", vysledek)
+suma()
+        
+
+
+
+
+
+
+
+
+    #list1 = []
+    #pomocnylist = []
+    #for word in textList[int(volba)-1]:
+     #   if word.isnumeric():
+     #       list1.append(word)
+     #   elif not word.isnumeric():
+      #      for pismeno in word:
+      #          if pismeno.isnumeric():
+      #              pomocnylist.append(pismeno)       
+   # print(list1)
+   # print(pomocnylist)
+
+
+
+    
 
 
 
