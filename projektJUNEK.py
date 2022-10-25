@@ -10,6 +10,7 @@ discord: jsemnamol#8198
 
 
 
+
 import string
 import re
 users = {'Bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'pass123',}
@@ -97,7 +98,30 @@ def suma():
         
     print("Suma všech čísel je: ", vysledek)
 suma()
+
+
+def graf():
+    listD = []
+    for word in textList[int(volba)-1].split():
+        if word.isalpha():
+            listD.append(len(word))
+    listD.sort()
+    _cislo = listD[0]
+    _list = []
+    pocet = 0
+    for item in listD:
         
+        if item == _cislo: 
+            pocet += 1
+        else:
+            _list.append(pocet)
+            pocet = 1
+            _cislo = item
+    print(_list)
+    
+    
+
+graf()  
 
 
 
