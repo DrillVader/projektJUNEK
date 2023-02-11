@@ -18,13 +18,17 @@ users = {'Bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'pass123'
 print("Vítám vás v našem textovém analyzátoru \npo přihlášení si budete moct vybrat mezi 3 texty ",
 "\na my vám o zadaném textu povíme vše co budete potřebovat :)")
 
-username = input('Uživatelské jméno:'.upper())
-password = input('Heslo:'.upper())
-if users.get(username) == password:   
-    print(f'Ahoj, {username}, vítej v aplikaci! Pokračuj...')
-else:
-    #pokud nesouhlasí   
-    print('Uživatelské jméno nebo heslo nejsou v pořádku, ukončuji')
+
+
+while True:
+    username = input('Uživatelské jméno:'.upper())
+    password = input('Heslo:'.upper())
+
+    if users.get(username) == password:
+        print(f'Ahoj, {username}, vítej v aplikaci! Pokračuj...')
+        break
+    else:
+        print("Incorrect username or password, please try again.")
 
 txt_soubor = open("task_template.txt", mode="r")
 obsah_txt = txt_soubor.read()
@@ -99,25 +103,19 @@ def suma():
     print("Suma všech čísel je: ", vysledek)
 suma()
 
-
+#za slovo se počíta s minimalně 2 znaky
 def graf():
-    listD = []
-    for word in textList[int(volba)-1].split():
+    delky_slov = {}
+    for word in textList[int(volba) - 1].split():
         if word.isalpha():
-            listD.append(len(word))
-    listD.sort()
-    _cislo = listD[0]
-    _list = []
-    pocet = 0
-    for item in listD:
-        
-        if item == _cislo: 
-            pocet += 1
-        else:
-            _list.append(pocet)
-            pocet = 1
-            _cislo = item
-    print(_list)
+            if len(word) in delky_slov:
+                delky_slov[len(word)] +=1
+            else:
+                delky_slov[len(word)] = 1
+    word_lengths = dict(sorted(delky_slov.items()))
+    for length, count in delky_slov.items():
+        print(f"{length:2d}|{'*'* count:<15} {count}")
+    
     
     
 
@@ -130,17 +128,7 @@ graf()
 
 
 
-    #list1 = []
-    #pomocnylist = []
-    #for word in textList[int(volba)-1]:
-     #   if word.isnumeric():
-     #       list1.append(word)
-     #   elif not word.isnumeric():
-      #      for pismeno in word:
-      #          if pismeno.isnumeric():
-      #              pomocnylist.append(pismeno)       
-   # print(list1)
-   # print(pomocnylist)
+   
 
 
 
